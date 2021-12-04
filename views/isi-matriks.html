@@ -90,59 +90,55 @@
         <!-- row -->
 
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
+          <div class="row justify-content-center">
+            <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Tabel Alternatif</h4>
-                  <div class="table-responsive">
-                    <table class="table table-bordered table-striped verticle-middle">
-                      <thead>
-                        <tr>
-                          <th scope="col">ID</th>
-                          <th scope="col">Nama</th>
-                          <th scope="col">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>Penyakit Layu Bakteri Ralstonia (Ralstonia Solanacearum)</td>
-                          <td>
-                            <span
-                              ><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a
-                            ></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Layu Fuserium (Fuserium Oxysporum Sp)</td>
-                          <td>
-                            <span
-                              ><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a
-                            ></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Penyakit Virus Kuning (Gemini Virus)</td>
-                          <td>
-                            <span
-                              ><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a
-                            ></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>Penyakit Bercak Daun (Cercospora sp.)</td>
-                          <td>
-                            <span
-                              ><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a
-                            ></span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <h4 class="card-title">Pengisian Nilai Matriks</h4>
+                  <div class="form-validation">
+                    <form class="form-valide" action="#" method="post">
+                      <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="val-alternatif">Alternatif<span class="text-danger">*</span> </label>
+                        <div class="col-lg-6">
+                          <select class="form-control" id="val-alternatif" name="val-alternatif">
+                            <option value="">Pilih Alternatif</option>
+                            <option value="1">Penyakit Layu Bakteri Ralstonia (Ralstonia Solanacearum)</option>
+                            <option value="2">Layu Fuserium (Fuserium Oxysporum Sp)</option>
+                            <option value="3">Penyakit Virus Kuning (Gemini Virus)</option>
+                            <option value="4">Penyakit Bercak Daun (Cercospora sp.)</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="val-matriks">kriteria 1<span class="text-danger">*</span> </label>
+                        <div class="col-lg-6">
+                          <input type="text" class="form-control" id="val-matriks" name="val-matriks" placeholder="Isi nilai kriteria" />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="val-matriks">kriteria 2<span class="text-danger">*</span> </label>
+                        <div class="col-lg-6">
+                          <input type="text" class="form-control" id="val-matriks" name="val-matriks" placeholder="Isi nilai kriteria" />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="val-matriks">kriteria 3<span class="text-danger">*</span> </label>
+                        <div class="col-lg-6">
+                          <input type="text" class="form-control" id="val-matriks" name="val-matriks" placeholder="Isi nilai kriteria" />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="val-matriks">kriteria 4<span class="text-danger">*</span> </label>
+                        <div class="col-lg-6">
+                          <input type="text" class="form-control" id="val-matriks" name="val-matriks" placeholder="Isi nilai kriteria" />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-lg-8 ml-auto">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -179,9 +175,5 @@
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
-
-    <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
-    <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
-    <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
   </body>
 </html>
