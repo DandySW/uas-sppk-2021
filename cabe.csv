@@ -3,3 +3,5 @@ Penyakit Layu Bakteri Ralstonia (Ralstonia Solanacearum),5,5,4,4,4,3,3,4,4,3,3,4
 Layu Fuserium (Fuserium Oxysporum Sp),1,4,4,5,5,4,3,3,2,3,3,2
 Penyakit Virus Kuning (Gemini Virus),4,4,4,3,3,4,4,4,4,4,3,3
 Penyakit Bercak Daun (Cercospora sp.),3,3,4,4,3,3,4,2,3,4,4,4
+Kategori,cost,cost,cost,cost,cost,cost,cost,cost,cost,cost,cost,cost
+Bobot,5,4,4,4,5,5,5,5,4,4,4,5
