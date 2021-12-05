@@ -1,4 +1,4 @@
-function read_csv() {
+function csv_process() {
     var csv = document.getElementById('csv').files.item(0).name;
-    eel.read_csv(csv)(function (ret) { console.log(ret) });
+    eel.csv_process(csv);
 }
