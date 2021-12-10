@@ -54,16 +54,19 @@ A_plus_minus = {
 }
 
 for column in range(1, count_columns):
+  # Kondisi jika kategori dari kriteria adalah benefit
+  if df.iloc[-2, column] == 'benefit' or df.iloc[-2, column] == 'b':
+    A_plus_minus['A_plus'].append(df2_weight.iloc[:, column-1].max())
+    A_plus_minus['A_minus'].append(df2_weight.iloc[:, column-1].min())
 
-  #Kondisi jika kategori dari kriteria adalah benefit
-  if df.iloc[-2,column] == 'benefit':
-    A_plus_minus['A_plus'].append(df2_weight.iloc[:,column-1].max())
-    A_plus_minus['A_minus'].append(df2_weight.iloc[:,column-1].mmin())
+  # Kondisi jika kategori dari kriteria adalah cost
+  elif df.iloc[-2, column] == 'cost' or df.iloc[-2, column] == 'c':
+    A_plus_minus['A_plus'].append(df2_weight.iloc[:, column-1].min())
+    A_plus_minus['A_minus'].append(df2_weight.iloc[:, column-1].max())
 
-  #Kondisi jika kategori dari kriteria adalah cost  
+  # Kondisi jika bukan keduanya
   else:
-    A_plus_minus['A_plus'].append(df2_weight.iloc[:,column-1].min())
-    A_plus_minus['A_minus'].append(df2_weight.iloc[:,column-1].max())
+    print("Kategori untuk Kriteria salah")
 
 print(A_plus_minus['A_plus'])
 print(A_plus_minus['A_minus'])
@@ -105,4 +108,6 @@ df3.insert(1, 'Total', total)
 
 ranking = df3.iloc[:,1].rank(ascending=False)
 df3.insert(2, 'Ranking', ranking)
-df3
+df3 = df3.sort_values(by=['Ranking'])
+print(df3.to_string())
+

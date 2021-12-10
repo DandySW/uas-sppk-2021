@@ -1,0 +1,10 @@
+﻿Alternatif,Biaya,Fasilitas,Kapasitas,Staff,Metode,Lokasi
+A1,3,4,4,4,4,2
+A2,3,4,3,4,5,5
+A3,3,3,5,4,4,1
+A4,2,5,3,4,5,4
+A5,3,4,2,4,4,4
+A6,2,4,3,4,5,1
+A7,1,4,5,4,5,4
+Kategori,cost,benefit,cost,benefit,benefit,cost
+Bobot,5,5,4,3,4,4
