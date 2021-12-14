@@ -37,11 +37,11 @@
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 <h4 class="text-center">Input file .csv</h4></a>
-                                <form class="mt-5 mb-3 login-input">
-                                    <div class="form-group">
-                                        <input type="file" id="csv" class="form-control" accept=".csv" required>
-                                    </div>
-                                    <button type="button" class="btn login-form__btn submit w-100" onclick="csv_topsis()">Upload</button>
+                                <form class="mt-5 mb-3 login-input" action="file.py" method="post">
+                                    <!-- <div class="form-group">
+                                        <input type="file" id="csv" name="csv" class="form-control" accept=".csv" required>
+                                    </div> -->
+                                    <a href="kriteria.html"><button type="button" class="btn login-form__btn submit w-100" onclick="csv()">Proses</button></a>
                                 </form>
                                 </div>
                             </div>
