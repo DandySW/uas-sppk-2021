@@ -89,35 +89,21 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
+              <form class="mt-5 mb-3 login-input" id="form-csv">
+                <div class="form-group">
+                  <input type="file" id="csv" name="csv" class="form-control" accept=".csv" />
+                </div>
+                <button type="button" class="btn login-form__btn submit w-100" onclick="get_alternatif()">Proses</button>
+              </form>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Tabel Alternatif</h4>
                   <div class="table-responsive">
                     <table class="table table-bordered table-striped verticle-middle">
-                      <thead>
-                        <tr>
-                          <th scope="col">No.</th>
-                          <th scope="col">Nama</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>Penyakit Layu Bakteri Ralstonia (Ralstonia Solanacearum)</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Layu Fuserium (Fuserium Oxysporum Sp)</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Penyakit Virus Kuning (Gemini Virus)</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>Penyakit Bercak Daun (Cercospora sp.)</td>
-                        </tr>
-                      </tbody>
+                      <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Nama Alterantif</th>
+                      </tr>
                     </table>
                   </div>
                 </div>
@@ -159,5 +145,8 @@
     <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+    <script src="eel.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

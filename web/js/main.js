@@ -4,11 +4,17 @@ function get_csv() {
     document.getElementById("form-csv").style.display = "none";
 
     var csv_name = document.getElementById('csv').files[0].name;
-    eel.csv(csv_name)(kriteria);
+    return (csv_name)
 }
 
-// fungsi untuk menampilkan kriteria
-function kriteria(columns) {
+// Fungsi untuk mendapatkan kriteria
+function get_kriteria() {
+    csv_name = get_csv()
+    eel.kriteria(csv_name)(set_kriteria);
+}
+
+// Fungsi untuk menampilkan kriteria
+function set_kriteria(columns) {
     // Fungsi untuk mendapatkan tabelnya
     var table = document.getElementsByTagName("table")[0];
 
@@ -30,4 +36,30 @@ function kriteria(columns) {
         cell4.innerHTML = columns[(column + 1)][2];
     }
 
+}
+
+// Fungsi untuk mendapatkan alternatif
+function get_alternatif() {
+    csv_name = get_csv()
+    eel.alternatif(csv_name)(set_alternatif);
+}
+
+// Fungsi untuk menampilkan alternatif
+function set_alternatif(rows) {
+    // Fungsi untuk mendapatkan tabelnya
+    var table = document.getElementsByTagName("table")[0];
+
+    // Looping untuk mengisi tabel
+    for (let row = 0; row < (rows.length - 2); row++) {
+        // Menghitung berapa banyak baris pada tabel
+        var newRow = table.insertRow(table.rows.length);
+
+        // Menambah cell pada baris baru
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+
+        // Masukkan nilai ke dalam cell
+        cell1.innerHTML = row + 1;
+        cell2.innerHTML = rows[(row)];
+    }
 }

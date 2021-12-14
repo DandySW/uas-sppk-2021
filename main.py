@@ -4,10 +4,10 @@ import pandas as pd
 eel.init('web')
 
 
-# Fungsi untuk membaca file csv
+# Fungsi untuk mengumpulkan kriteria
 @eel.expose
-def csv(csv_name):
-    # Array untuk menampung kolom
+def kriteria(csv_name):
+    # Array untuk menampung kolom dan baris
     columns = []
 
     df = pd.read_csv(csv_name)
@@ -21,4 +21,19 @@ def csv(csv_name):
     return(columns)
 
 
-eel.start('kriteria.html', size=(1920, 1080))
+# Fungsi untuk mengumpulkan alternatif
+@eel.expose
+def alternatif(csv_name):
+    rows = []
+
+    df = pd.read_csv(csv_name)
+    # count_columns = len(df.columns)
+    count_rows = len(df)
+
+    # Membuat array berdasarkan nama alternatif
+    for i in range(count_rows):
+        rows.append(df.iloc[i][0])
+    return(rows)
+
+
+eel.start('kriteria.html')
