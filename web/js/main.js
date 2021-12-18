@@ -7,13 +7,13 @@ function get_csv() {
     return (csv_name)
 }
 
-// Fungsi untuk mendapatkan kriteria
+// Fungsi untuk mendapatkan Kriteria
 function get_kriteria() {
-    csv_name = get_csv()
+    csv_name = get_csv();
     eel.kriteria(csv_name)(set_kriteria);
 }
 
-// Fungsi untuk menampilkan kriteria
+// Fungsi untuk menampilkan Kriteria
 function set_kriteria(columns) {
     // Fungsi untuk mendapatkan tabelnya
     var table = document.getElementsByTagName("table")[0];
@@ -38,13 +38,13 @@ function set_kriteria(columns) {
 
 }
 
-// Fungsi untuk mendapatkan alternatif
+// Fungsi untuk mendapatkan Alternatif
 function get_alternatif() {
-    csv_name = get_csv()
+    csv_name = get_csv();
     eel.alternatif(csv_name)(set_alternatif);
 }
 
-// Fungsi untuk menampilkan alternatif
+// Fungsi untuk menampilkan Alternatif
 function set_alternatif(rows) {
     // Fungsi untuk mendapatkan tabelnya
     var table = document.getElementsByTagName("table")[0];
@@ -62,4 +62,75 @@ function set_alternatif(rows) {
         cell1.innerHTML = row + 1;
         cell2.innerHTML = rows[(row)];
     }
+}
+
+// Fungsi untuk mendapatkan Tabel Kecocokan
+function get_tabel_kecocokan() {
+    csv_name = get_csv();
+    eel.tabel_kecocokan(csv_name)(set_tabel_kecocokan);
+}
+
+// Fungsi untuk menampilkan Tabel Kecocokan
+function set_tabel_kecocokan(columns) {
+
+    // Fungsi untuk mendapatkan tabelnya
+    // var tr = document.getElementById('tabel-kecocokan');
+
+    // for (let column = 0; column < columns.length; column++) {
+    //     var th = document.createElement('th');
+    //     th.innerHTML = (columns[column][0]);
+    //     tr.appendChild(th);
+    // }
+    console.log(columns)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Fungsi untuk mendapatkan bobot ternormalisasi
+function get_bobot_ternormalisasi() {
+    csv_name = get_csv();
+    eel.bobot_ternormalisasi(csv_name)(set_bobot_ternormalisasi);
+}
+
+// Fungsi untuk mendapatkan jarak solusi ideal
+function get_jarak_solusi_ideal() {
+    csv_name = get_csv();
+    eel.jarak_solusi_ideal(csv_name)(set_jarak_solusi_ideal);
+}
+
+
+// Fungsi untuk mendapatkan matriks ternormalisasi
+function get_matriks_ternormalisasi() {
+    csv_name = get_csv();
+    eel.matriks_ternormalisasi(csv_name)(set_matriks_ternormalisasi);
+}
+
+// Fungsi untuk mendapatkan nilai prefensi
+function get_nilaipreferensi() {
+    csv_name = get_csv();
+    eel.nilai_preferensi(csv_name)(set_nilai_preferensi);
+}
+
+// Fungsi untuk mendapatkan solusi ideal
+function get_solusi_ideal() {
+    csv_name = get_csv();
+    eel.solusi_ideal(csv_name)(set_solusi_ideal);
 }

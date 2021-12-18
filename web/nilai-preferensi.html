@@ -60,9 +60,11 @@
               <a href="alternatif.html" aria-expanded="false"> <i class="icon-grid menu-icon"></i><span class="nav-text">Tabel Alternatif</span></a>
             </li>
             <li>
+              <a href="tabel-kecocokan.html" aria-expanded="false"> <i class="icon-note menu-icon"></i><span class="nav-text">Tabel Kecocokan</span></a>
+            </li>
+            <li>
               <a class="has-arrow" href="javascript:void()" aria-expanded="false"> <i class="icon-calculator menu-icon"></i> <span class="nav-text">Hasil TOPSIS</span> </a>
               <ul aria-expanded="false">
-                <li><a href="matriks-keputusan.html">Matriks Keputusan</a></li>
                 <li><a href="matriks-ternormalisasi.html">Matriks Keputusan Ternormalisasi Terbobot</a></li>
                 <li><a href="bobot-ternormalisasi.html">Nilai Bobot Ternormalisasi</a></li>
                 <li><a href="solusi-ideal.html">Solusi Ideal Positif & Negatif</a></li>
@@ -89,40 +91,22 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
+              <form class="mt-5 mb-3 login-input" id="form-csv">
+                <div class="form-group">
+                  <input type="file" id="csv" name="csv" class="form-control" accept=".csv" />
+                </div>
+                <button type="button" class="btn login-form__btn submit w-100" onclick="get_nilai_preferensi()">Proses</button>
+              </form>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Nilai Preferensi Setiap Alternatif</h4>
                   <div class="table-responsive">
                     <table class="table table-bordered table-striped verticle-middle">
-                      <thead>
-                        <tr>
-                          <th scope="col">Alternatif</th>
-                          <th scope="col">Total</th>
-                          <th scope="col">Ranking</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Penyakit Layu Bakteri Ralstonia (Ralstonia Solanacearum)</td>
-                          <td>0.281617</td>
-                          <td>4</td>
-                        </tr>
-                        <tr>
-                          <td>Layu Fuserium (Fuserium Oxysporum Sp)</td>
-                          <td>0.648412</td>
-                          <td>1</td>
-                        </tr>
-                        <tr>
-                          <td>Penyakit Virus Kuning (Gemini Virus)</td>
-                          <td>0.394667</td>
-                          <td>3</td>
-                        </tr>
-                        <tr>
-                          <td>Penyakit Bercak Daun (Cercospora sp.)</td>
-                          <td>0.535609</td>
-                          <td>2</td>
-                        </tr>
-                      </tbody>
+                      <tr>
+                        <th scope="col">Alternatif</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Ranking</th>
+                      </tr>
                     </table>
                   </div>
                 </div>
@@ -164,5 +148,8 @@
     <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+    <script src="eel.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

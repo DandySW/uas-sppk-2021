@@ -4,10 +4,10 @@ import pandas as pd
 eel.init('web')
 
 
-# Fungsi untuk mengumpulkan kriteria
+# Fungsi untuk mendapatkan Kriteria
 @eel.expose
 def kriteria(csv_name):
-    # Array untuk menampung kolom dan baris
+    # Array untuk menampung kriteria
     columns = []
 
     df = pd.read_csv(csv_name)
@@ -21,19 +21,26 @@ def kriteria(csv_name):
     return(columns)
 
 
-# Fungsi untuk mengumpulkan alternatif
+# Fungsi untuk mendapatkan Alternatif
 @eel.expose
 def alternatif(csv_name):
+    # Array untuk menampung alternatif
     rows = []
 
     df = pd.read_csv(csv_name)
-    # count_columns = len(df.columns)
     count_rows = len(df)
 
     # Membuat array berdasarkan nama alternatif
     for i in range(count_rows):
         rows.append(df.iloc[i][0])
     return(rows)
+
+
+# Fungsi untuk mendapatkan Tabel Kecocokan
+@eel.expose
+def tabel_kecocokan(csv_name):
+    columns = kriteria(csv_name)
+    return(columns)
 
 
 eel.start('kriteria.html')

@@ -60,9 +60,11 @@
               <a href="alternatif.html" aria-expanded="false"> <i class="icon-grid menu-icon"></i><span class="nav-text">Tabel Alternatif</span></a>
             </li>
             <li>
+              <a href="tabel-kecocokan.html" aria-expanded="false"> <i class="icon-note menu-icon"></i><span class="nav-text">Tabel Kecocokan</span></a>
+            </li>
+            <li>
               <a class="has-arrow" href="javascript:void()" aria-expanded="false"> <i class="icon-calculator menu-icon"></i> <span class="nav-text">Hasil TOPSIS</span> </a>
               <ul aria-expanded="false">
-                <li><a href="matriks-keputusan.html">Matriks Keputusan</a></li>
                 <li><a href="matriks-ternormalisasi.html">Matriks Keputusan Ternormalisasi Terbobot</a></li>
                 <li><a href="bobot-ternormalisasi.html">Nilai Bobot Ternormalisasi</a></li>
                 <li><a href="solusi-ideal.html">Solusi Ideal Positif & Negatif</a></li>
@@ -89,45 +91,18 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
+              <form class="mt-5 mb-3 login-input" id="form-csv">
+                <div class="form-group">
+                  <input type="file" id="csv" name="csv" class="form-control" accept=".csv" />
+                </div>
+                <button type="button" class="btn login-form__btn submit w-100" onclick="get_tabel_kecocokan()">Proses</button>
+              </form>
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Matriks Keputusan</h4>
+                  <h4 class="card-title">Tabel Kecocokan</h4>
                   <div class="table-responsive">
-                    <table class="table table-bordered table-striped verticle-middle">
-                      <thead>
-                        <tr>
-                          <th scope="col">Nama Alternatif</th>
-                          <th scope="col">Daun mengalami kelayuan</th>
-                          <th scope="col">Daun menguning dan menjalar ke ranting</th>
-                          <th scope="col">Warna jaringan akar dan batang menjadi coklat</th>
-                          <th scope="col">Layu secara tiba-tiba</th>
-                          <th scope="col">Semua daun layu tetapi tidak berubah warna</th>
-                          <th scope="col">Jaringan veskuler dari batang bagian bawah akar coklat</th>
-                          <th scope="col">Pucuk daun berubah menjadi kuning jelas</th>
-                          <th scope="col">Tulang daun menebal dan daun menggulung ke atas</th>
-                          <th scope="col">Tanaman kerdil dan tidak berbuah</th>
-                          <th scope="col">Muncul bercak bulat berwarna coklat pada daun dan kering</th>
-                          <th scope="col">Bercak berwarna pucat putih dengan warna tepi lebih tua</th>
-                          <th scope="col">Terdapat lubang pada bercak tua</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Penyakit Layu Bakteri Ralstonia (Ralstonia Solanacearum)</td>
-                          <td>5</td>
-                          <td>5</td>
-                          <td>4</td>
-                          <td>4</td>
-                          <td>4</td>
-                          <td>3</td>
-                          <td>3</td>
-                          <td>4</td>
-                          <td>4</td>
-                          <td>3</td>
-                          <td>3</td>
-                          <td>4</td>
-                        </tr>
-                      </tbody>
+                    <table class="table table-bordered table-striped verticle-middle" id="tabel-kecocokan">
+                      <tr></tr>
                     </table>
                   </div>
                 </div>
@@ -169,5 +144,8 @@
     <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+    <script src="eel.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
