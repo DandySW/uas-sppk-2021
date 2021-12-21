@@ -1,10 +1,10 @@
 // Fungsi untuk mendapatkan file csv
 function get_csv() {
     // Mengubah button agar disable
-    document.getElementById("form-csv").style.display = "none";
+    // document.getElementById("form-csv").style.display = "none";
 
-    var csv_name = document.getElementById('csv').files[0].name;
-    return (csv_name)
+    // var csv_name = document.getElementById('csv').files[0].name;
+    return ('cabe.csv')
 }
 
 // Fungsi untuk mendapatkan Kriteria
