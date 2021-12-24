@@ -40,7 +40,20 @@ def alternatif(csv_name):
 @eel.expose
 def tabel_kecocokan(csv_name):
     columns = kriteria(csv_name)
-    return(columns)
+
+    # Array untuk menampung nilai setiap baris
+    rows = []
+
+    df = pd.read_csv(csv_name)
+    count_columns = len(df.columns)
+    count_rows = len(df)
+
+    for i in range(count_rows-2):
+        rows.append([df.iloc[i][0]])
+        for j in range(1, count_columns):
+            rows[i].append(df.iloc[i][j])
+    # print(rows)
+    return(columns, rows)
 
 
 eel.start('kriteria.html')

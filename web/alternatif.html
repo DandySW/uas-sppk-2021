@@ -12,7 +12,7 @@
     <link href="css/style.css" rel="stylesheet" />
   </head>
 
-  <body onload="get_alternatif()">
+  <body>
     <!--*******************
         Preloader start
     ********************-->
@@ -91,6 +91,12 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
+              <form class="mt-5 mb-3 login-input" id="form-csv">
+                <div class="form-group">
+                  <input type="file" id="csv" name="csv" class="form-control" accept=".csv" />
+                </div>
+                <button type="button" class="btn login-form__btn submit w-100" onclick="get_alternatif()">Proses</button>
+              </form>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Tabel Alternatif</h4>
@@ -118,7 +124,11 @@
         ***********************************-->
       <div class="footer">
         <div class="copyright">
-          <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2021</p>
+                <!-- <div class="footer">
+        <div class="copyright">
+          <p>Copyright &copy; Template by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2021</p>
+        </div>
+      </div>
         </div>
       </div>
       <!--**********************************

@@ -1,10 +1,15 @@
 // Fungsi untuk mendapatkan file csv
 function get_csv() {
-    // Mengubah button agar disable
-    // document.getElementById("form-csv").style.display = "none";
+    // Mendapatkan nama file csv
+    var csv_name = document.getElementById("csv").files[0].name;
 
-    // var csv_name = document.getElementById('csv').files[0].name;
-    return ('cabe.csv')
+    // Mengubah button agar disable
+    if (csv_name != '') {
+        document.getElementById("form-csv").style.display = "none";
+    }
+
+    // Mendapatkan nama file csv
+    return (csv_name);
 }
 
 // Fungsi untuk mendapatkan Kriteria
@@ -23,13 +28,13 @@ function set_kriteria(columns) {
         // Menghitung berapa banyak baris pada tabel
         var newRow = table.insertRow(table.rows.length);
 
-        // Menambah cell pada baris baru
+        // Menambah baris baru
         var cell1 = newRow.insertCell(0);
         var cell2 = newRow.insertCell(1);
         var cell3 = newRow.insertCell(2);
         var cell4 = newRow.insertCell(3);
 
-        // Masukkan nilai ke dalam cell
+        // Masukkan nilai kolom pada setiap baris baru
         cell1.innerHTML = column + 1;
         cell2.innerHTML = columns[(column + 1)][0];
         cell3.innerHTML = columns[(column + 1)][1];
@@ -54,11 +59,11 @@ function set_alternatif(rows) {
         // Menghitung berapa banyak baris pada tabel
         var newRow = table.insertRow(table.rows.length);
 
-        // Menambah cell pada baris baru
+        // Menambah baris baru
         var cell1 = newRow.insertCell(0);
         var cell2 = newRow.insertCell(1);
 
-        // Masukkan nilai ke dalam cell
+        // Masukkan nilai kolom pada setiap baris baru
         cell1.innerHTML = row + 1;
         cell2.innerHTML = rows[(row)];
     }
@@ -71,17 +76,36 @@ function get_tabel_kecocokan() {
 }
 
 // Fungsi untuk menampilkan Tabel Kecocokan
-function set_tabel_kecocokan(columns) {
+// Return dari python tergabung dalam 1 array
+function set_tabel_kecocokan(array) {
 
     // Fungsi untuk mendapatkan tabelnya
-    // var tr = document.getElementById('tabel-kecocokan');
+    var tr = document.getElementById("tabel-kecocokan");
 
-    // for (let column = 0; column < columns.length; column++) {
-    //     var th = document.createElement('th');
-    //     th.innerHTML = (columns[column][0]);
-    //     tr.appendChild(th);
-    // }
-    console.log(columns)
+    // Lopping untuk membuat nama kolom
+    for (let column = 0; column < array[0].length; column++) {
+        var th = document.createElement('th');
+        th.innerHTML = (array[0][column][0]);
+        tr.appendChild(th);
+    }
+
+    // Fungsi untuk mendapatkan tabelnya
+    var table = document.getElementsByTagName("table")[0];
+
+    // Looping untuk mengisi tabel
+    for (let row = 0; row < (array[1].length); row++) {
+        // Menghitung berapa banyak baris pada tabel
+        var newRow = table.insertRow(table.rows.length);
+
+        for (let column = 0; column < array[0].length; column++) {
+            // Menambah baris baru
+            var cell = newRow.insertCell(column);
+
+            // Masukkan nilai kolom pada setiap baris baru
+            cell.innerHTML = array[1][row][column];
+        }
+        console.log(table.rows.length)
+    }
 }
 
 
