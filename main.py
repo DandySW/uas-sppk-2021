@@ -48,12 +48,43 @@ def tabel_kecocokan(csv_name):
     count_columns = len(df.columns)
     count_rows = len(df)
 
+    # Mengubah DataFrame menjadi Array
     for i in range(count_rows-2):
         rows.append([df.iloc[i][0]])
         for j in range(1, count_columns):
             rows[i].append(df.iloc[i][j])
-    # print(rows)
     return(columns, rows)
 
 
-eel.start('kriteria.html')
+# Fungsi untuk mendapatkan Matriks Ternormalisasi
+@eel.expose
+def matriks_ternormalisasi(csv_name):
+    array = tabel_kecocokan(csv_name)
+
+    rows = array[1]
+    columns = []
+    # Membuat Array kolom
+    for i in range(len(array[0])):
+        columns.append(array[0][i][0])
+
+    count_columns = len(columns)
+    count_rows = len(rows)
+
+    # Membuat DataFrame baru. Dihitung menggunakan rumus
+    df = pd.DataFrame(rows, columns=columns)
+    df.iloc[:, 1:] = df.iloc[:, 1:].astype(int)
+    sqrt = (df.iloc[:, 1:]**2).sum()**0.5
+    df.iloc[:, 1:] /= sqrt
+
+    # Membuat array Baris dari DataFrame yang baru
+    rows = []
+    for i in range(count_rows):
+        rows.append([df.iloc[i][0]])
+        for j in range(1, count_columns):
+            rows[i].append(df.iloc[i][j])
+
+    return(columns, rows, df)
+    # STOP DULU
+
+
+eel.start('kriteria.html', size=(1280, 720))

@@ -104,10 +104,22 @@ function set_tabel_kecocokan(array) {
             // Masukkan nilai kolom pada setiap baris baru
             cell.innerHTML = array[1][row][column];
         }
-        console.log(table.rows.length)
     }
 }
 
+// Fungsi untuk mendapatkan matriks ternormalisasi
+function get_matriks_ternormalisasi() {
+    csv_name = get_csv();
+    eel.matriks_ternormalisasi(csv_name)(set_matriks_ternormalisasi);
+}
+
+// Fungsi untuk menampilkan Tabel Kecocokan
+// Return dari python tergabung dalam 1 array
+function set_matriks_ternormalisasi(array) {
+    console.log(array)
+    // Masih belum dikerjakan. ingin mencoba membuat lebih efektif
+    // STOP DULU
+}
 
 
 
@@ -141,11 +153,7 @@ function get_jarak_solusi_ideal() {
 }
 
 
-// Fungsi untuk mendapatkan matriks ternormalisasi
-function get_matriks_ternormalisasi() {
-    csv_name = get_csv();
-    eel.matriks_ternormalisasi(csv_name)(set_matriks_ternormalisasi);
-}
+
 
 // Fungsi untuk mendapatkan nilai prefensi
 function get_nilaipreferensi() {
