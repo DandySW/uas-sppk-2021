@@ -1,90 +1,47 @@
 import eel
 import pandas as pd
+import numpy as np
 
 eel.init('web')
 
 
-# Fungsi untuk mendapatkan Kriteria
+# Membaca file csv, menghitung baris dan kolom
+def read_csv(csv_name):
+    df = pd.read_csv(csv_name)
+    cols = df.columns.values
+    rows = df.values
+
+    return(cols, rows)
+
+
+# Fungsi untuk Kriteria
 @eel.expose
 def kriteria(csv_name):
-    # Array untuk menampung kriteria
-    columns = []
+    # Memanggil fungsi read_csv
+    cols, rows = read_csv(csv_name)
 
-    df = pd.read_csv(csv_name)
-    count_columns = len(df.columns)
-    count_rows = len(df)
+    # Membuat array menggunakan Numpy yang berisi nama, kategori, dan bobot alternatif.
+    kriteria = np.array([cols[1:], rows[4][1:], rows[5][1:]])
 
-    # Membuat array berdasarkan nama kriteria
-    for i in range(count_columns):
-        columns.append([df.columns[i], df.iloc[count_rows-2]
-                       [i], df.iloc[count_rows-1][i]])
-    return(columns)
+    # Tolist berfungsi untuk mengubah Numpy menjadi array biasa
+    kriteria = kriteria.tolist()
+
+    return(kriteria)
 
 
-# Fungsi untuk mendapatkan Alternatif
+# Fungsi untuk Alternatif
 @eel.expose
 def alternatif(csv_name):
-    # Array untuk menampung alternatif
-    rows = []
+    # Memanggil fungsi read_csv
+    rows = read_csv(csv_name)[1]
 
-    df = pd.read_csv(csv_name)
-    count_rows = len(df)
+    # Menggunakan Tolist untuk mengubah DataFrame menjadi array biasa
+    alternatif = rows[:-2, :1].tolist()
 
-    # Membuat array berdasarkan nama alternatif
-    for i in range(count_rows):
-        rows.append(df.iloc[i][0])
-    return(rows)
+    # Menggunakan Sum untuk menggabungkan array
+    alternatif = sum(alternatif, [])
 
-
-# Fungsi untuk mendapatkan Tabel Kecocokan
-@eel.expose
-def tabel_kecocokan(csv_name):
-    columns = kriteria(csv_name)
-
-    # Array untuk menampung nilai setiap baris
-    rows = []
-
-    df = pd.read_csv(csv_name)
-    count_columns = len(df.columns)
-    count_rows = len(df)
-
-    # Mengubah DataFrame menjadi Array
-    for i in range(count_rows-2):
-        rows.append([df.iloc[i][0]])
-        for j in range(1, count_columns):
-            rows[i].append(df.iloc[i][j])
-    return(columns, rows)
-
-
-# Fungsi untuk mendapatkan Matriks Ternormalisasi
-@eel.expose
-def matriks_ternormalisasi(csv_name):
-    array = tabel_kecocokan(csv_name)
-
-    rows = array[1]
-    columns = []
-    # Membuat Array kolom
-    for i in range(len(array[0])):
-        columns.append(array[0][i][0])
-
-    count_columns = len(columns)
-    count_rows = len(rows)
-
-    # Membuat DataFrame baru. Dihitung menggunakan rumus
-    df = pd.DataFrame(rows, columns=columns)
-    df.iloc[:, 1:] = df.iloc[:, 1:].astype(int)
-    sqrt = (df.iloc[:, 1:]**2).sum()**0.5
-    df.iloc[:, 1:] /= sqrt
-
-    # Membuat array Baris dari DataFrame yang baru
-    rows = []
-    for i in range(count_rows):
-        rows.append([df.iloc[i][0]])
-        for j in range(1, count_columns):
-            rows[i].append(df.iloc[i][j])
-
-    return(columns, rows, df)
-    # STOP DULU
+    return(alternatif)
 
 
 eel.start('kriteria.html', size=(1280, 720))
