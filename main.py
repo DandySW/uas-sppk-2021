@@ -44,4 +44,24 @@ def alternatif(csv_name):
     return(alternatif)
 
 
+# Fungsi untuk Tabel Kecocokan
+@eel.expose
+def tabel_kecocokan(csv_name):
+    # Memanggil fungsi read_csv
+    cols, rows = read_csv(csv_name)
+
+    # Membuat array untuk Kriteria dan Alternatif
+    kriteria = np.array(cols).tolist()
+    alternatif = np.array(rows)[:-2].tolist()
+
+    return(kriteria, alternatif)
+
+
+# Fungsi untuk Matriks Ternormalisasi
+@eel.expose
+def matriks_ternormalisasi(csv_name):
+    tblKecocokan = tabel_kecocokan(csv_name)
+    return(tblKecocokan)
+
+
 eel.start('kriteria.html', size=(1280, 720))

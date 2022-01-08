@@ -29,12 +29,9 @@ function set_kriteria(kriteria) {
     for (let i = 0; i < kriteria[0].length; i++) {
         var newRow = table.insertRow(table.rows.length);
 
-        var number = newRow.insertCell(0);
-        number.innerHTML = i + 1;
-
         for (let j = 0; j < kriteria.length; j++) {
             // Mengisi nilai berdasarkan return dari Python
-            var value = newRow.insertCell(j + 1);
+            var value = newRow.insertCell(j);
             value.innerHTML = kriteria[j][i];
         }
     }
@@ -54,10 +51,51 @@ function set_alternatif(alternatif) {
     for (let i = 0; i < alternatif.length; i++) {
         var newRow = table.insertRow(table.rows.length);
 
-        var number = newRow.insertCell(0);
-        number.innerHTML = i + 1;
-
-        var value = newRow.insertCell(1);
+        var value = newRow.insertCell(0);
         value.innerHTML = alternatif[i];
     }
+}
+
+// Memanggil fungsi get_csv lalu mengirim ke Python
+function get_tabel_kecocokan() {
+    eel.tabel_kecocokan(get_csv())(set_tabel_kecocokan);
+}
+
+// Fungsi untuk menampilkan Tabel Kecocokan
+function set_tabel_kecocokan(array) {
+    // Fungsi untuk mendapatkan tabelnya
+    var kriteria = array[0];
+    var alternatif = array[1];
+    var table = get_table();
+
+    // Membuat Nama Kolom pada tabel
+    var tr = document.createElement('tr')
+    for (let i = 0; i < kriteria.length; i++) {
+        var th = document.createElement('th');
+        th.innerHTML = kriteria[i];
+        tr.appendChild(th);
+    }
+    table.appendChild(tr);
+
+    // Looping untuk setiap baris
+    for (let i = 0; i < alternatif.length; i++) {
+        var newRow = table.insertRow(table.rows.length);
+
+        // Looping untuk setiap nilai pada baris
+        for (let j = 0; j < alternatif[i].length; j++) {
+            // Mengisi nilai berdasarkan return dari Python
+            var value = newRow.insertCell(j);
+            value.innerHTML = alternatif[i][j];
+        }
+    }
+}
+
+// Memanggil fungsi get_csv lalu mengirim ke Python
+function get_matriks_ternormalisasi() {
+    eel.matriks_ternormalisasi(get_csv())(set_matriks_ternormalisasi);
+}
+
+//Fungsi untuk menampilkan Matriks Ternormalisasi
+function set_matriks_ternormalisasi(array) {
+    tblKecocokan = set_tabel_kecocokan(array)
 }
