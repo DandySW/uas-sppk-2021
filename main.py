@@ -60,8 +60,17 @@ def tabel_kecocokan(csv_name):
 # Fungsi untuk Matriks Ternormalisasi
 @eel.expose
 def matriks_ternormalisasi(csv_name):
-    tblKecocokan = tabel_kecocokan(csv_name)
-    return(tblKecocokan)
+    kriteria, alternatif = tabel_kecocokan(csv_name)
+
+    alternatif = pd.DataFrame(alternatif)
+    alt_name = np.array(alternatif[0]).tolist()
+    alt_value = alternatif.iloc[:, 1:].astype(int)
+
+    alt_sqrt = (alt_value**2).sum()**0.5
+    alt_value /= alt_sqrt
+
+    alt_value = np.array(alt_value).tolist()
+    return(kriteria, alt_name, alt_value)
 
 
 eel.start('kriteria.html', size=(1280, 720))

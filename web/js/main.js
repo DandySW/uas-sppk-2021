@@ -12,7 +12,7 @@ function get_csv() {
 }
 
 function get_table() {
-    return (document.getElementsByTagName("table")[0]);
+    return (document.getElementsByTagName("tbody")[0]);
 }
 
 // Memanggil fungsi get_csv lalu mengirim ke Python
@@ -69,7 +69,7 @@ function set_tabel_kecocokan(array) {
     var table = get_table();
 
     // Membuat Nama Kolom pada tabel
-    var tr = document.createElement('tr')
+    var tr = document.createElement('tr');
     for (let i = 0; i < kriteria.length; i++) {
         var th = document.createElement('th');
         th.innerHTML = kriteria[i];
@@ -77,11 +77,12 @@ function set_tabel_kecocokan(array) {
     }
     table.appendChild(tr);
 
+
     // Looping untuk setiap baris
     for (let i = 0; i < alternatif.length; i++) {
         var newRow = table.insertRow(table.rows.length);
 
-        // Looping untuk setiap nilai pada baris
+        // Looping untuk nilai tiap kolom pada setiap baris
         for (let j = 0; j < alternatif[i].length; j++) {
             // Mengisi nilai berdasarkan return dari Python
             var value = newRow.insertCell(j);
@@ -97,5 +98,39 @@ function get_matriks_ternormalisasi() {
 
 //Fungsi untuk menampilkan Matriks Ternormalisasi
 function set_matriks_ternormalisasi(array) {
-    tblKecocokan = set_tabel_kecocokan(array)
+    // Fungsi untuk mendapatkan tabelnya
+    var kriteria = array[0];
+    var alt_name = array[1];
+    var alt_value = array[2];
+    var table = get_table();
+
+    // Membuat Nama Kolom pada tabel
+    var tr = document.createElement('tr');
+    for (let i = 0; i < kriteria.length; i++) {
+        var th = document.createElement('th');
+        th.innerHTML = kriteria[i];
+        tr.appendChild(th);
+    }
+    table.appendChild(tr);
+
+    // Looping untuk setiap baris
+    for (let i = 0; i < alt_value.length; i++) {
+        var newRow = table.insertRow(table.rows.length);
+
+        var value = newRow.insertCell(0);
+        value.innerHTML = alt_name[i];
+
+
+        // Looping untuk nilai tiap kolom pada setiap baris
+        for (let j = 0; j < alt_value[i].length; j++) {
+            // Mengisi nilai berdasarkan return dari Python
+            var value = newRow.insertCell(j + 1);
+            value.innerHTML = alt_value[i][j].toFixed(6);
+        }
+    }
+
+    // UBAH BENTUK TABELNYA
+
+    // alt_value = alt_value.toFixed(2)
+    // console.log(alt_value);
 }
