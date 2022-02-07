@@ -1,9 +1,7 @@
 // Mendapatkan file csv dari form input
 function get_csv() {
-    // Mendapatkan nama file csv
     var csv_name = document.getElementById("csv-file").files[0].name;
 
-    // Mengubah button agar disable jika sudah ada file csv yang dipilih
     if (csv_name != '') {
         document.getElementById("form-csv").style.display = "none";
     }
@@ -15,14 +13,11 @@ function get_table() {
     return (document.getElementsByTagName("tbody")[0]);
 }
 
-// Memanggil fungsi get_csv lalu mengirim ke Python
 function get_kriteria() {
     eel.kriteria(get_csv())(set_kriteria);
 }
 
-// Fungsi untuk menampilkan Kriteria
 function set_kriteria(kriteria) {
-    // Fungsi untuk mendapatkan tabelnya
     var table = get_table();
 
     // Looping untuk mengisi setiap baris pada tabel
@@ -30,21 +25,17 @@ function set_kriteria(kriteria) {
         var newRow = table.insertRow(table.rows.length);
 
         for (let j = 0; j < kriteria.length; j++) {
-            // Mengisi nilai berdasarkan return dari Python
             var value = newRow.insertCell(j);
             value.innerHTML = kriteria[j][i];
         }
     }
 }
 
-// Memanggil fungsi get_csv lalu mengirim ke Python
 function get_alternatif() {
     eel.alternatif(get_csv())(set_alternatif);
 }
 
-// Fungsi untuk menampilkan Kriteria
 function set_alternatif(alternatif) {
-    // Fungsi untuk mendapatkan tabelnya
     var table = get_table();
 
     // Looping untuk mengisi setiap baris pada tabel
@@ -56,17 +47,14 @@ function set_alternatif(alternatif) {
     }
 }
 
-// Memanggil fungsi get_csv lalu mengirim ke Python
 function get_tabel_kecocokan() {
     eel.tabel_kecocokan(get_csv())(set_tabel_kecocokan);
 }
 
-// Fungsi untuk menampilkan Tabel Kecocokan
 function set_tabel_kecocokan(array) {
-    // Fungsi untuk mendapatkan tabelnya
+    var table = get_table();
     var kriteria = array[0];
     var alternatif = array[1];
-    var table = get_table();
 
     // Membuat Nama Kolom pada tabel
     var tr = document.createElement('tr');
@@ -84,25 +72,21 @@ function set_tabel_kecocokan(array) {
 
         // Looping untuk nilai tiap kolom pada setiap baris
         for (let j = 0; j < alternatif[i].length; j++) {
-            // Mengisi nilai berdasarkan return dari Python
             var value = newRow.insertCell(j);
             value.innerHTML = alternatif[i][j];
         }
     }
 }
 
-// Memanggil fungsi get_csv lalu mengirim ke Python
 function get_matriks_ternormalisasi() {
     eel.matriks_ternormalisasi(get_csv())(set_matriks_ternormalisasi);
 }
 
-//Fungsi untuk menampilkan Matriks Ternormalisasi
 function set_matriks_ternormalisasi(array) {
-    // Fungsi untuk mendapatkan tabelnya
+    var table = get_table();
     var kriteria = array[0];
     var alt_name = array[1];
     var alt_value = array[2];
-    var table = get_table();
 
     // Membuat Nama Kolom pada tabel
     var tr = document.createElement('tr');
@@ -117,20 +101,25 @@ function set_matriks_ternormalisasi(array) {
     for (let i = 0; i < alt_value.length; i++) {
         var newRow = table.insertRow(table.rows.length);
 
+        // Menambahkan nama Alternatif
         var value = newRow.insertCell(0);
         value.innerHTML = alt_name[i];
 
 
         // Looping untuk nilai tiap kolom pada setiap baris
         for (let j = 0; j < alt_value[i].length; j++) {
-            // Mengisi nilai berdasarkan return dari Python
             var value = newRow.insertCell(j + 1);
             value.innerHTML = alt_value[i][j].toFixed(6);
         }
     }
-
-    // UBAH BENTUK TABELNYA
-
-    // alt_value = alt_value.toFixed(2)
-    // console.log(alt_value);
 }
+
+function get_bobot_ternormalisasi() {
+    eel.bobot_ternormalisasi(get_csv())(set_bobot_ternormalisasi);
+}
+
+function set_bobot_ternormalisasi(array) {
+    set_matriks_ternormalisasi(array)
+
+}
+

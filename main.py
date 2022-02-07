@@ -14,10 +14,8 @@ def read_csv(csv_name):
     return(cols, rows)
 
 
-# Fungsi untuk Kriteria
 @eel.expose
 def kriteria(csv_name):
-    # Memanggil fungsi read_csv
     cols, rows = read_csv(csv_name)
 
     # Membuat array menggunakan Numpy yang berisi nama, kategori, dan bobot alternatif.
@@ -29,10 +27,8 @@ def kriteria(csv_name):
     return(kriteria)
 
 
-# Fungsi untuk Alternatif
 @eel.expose
 def alternatif(csv_name):
-    # Memanggil fungsi read_csv
     rows = read_csv(csv_name)[1]
 
     # Menggunakan Tolist untuk mengubah DataFrame menjadi array biasa
@@ -47,7 +43,6 @@ def alternatif(csv_name):
 # Fungsi untuk Tabel Kecocokan
 @eel.expose
 def tabel_kecocokan(csv_name):
-    # Memanggil fungsi read_csv
     cols, rows = read_csv(csv_name)
 
     # Membuat array untuk Kriteria dan Alternatif
@@ -57,7 +52,6 @@ def tabel_kecocokan(csv_name):
     return(kriteria, alternatif)
 
 
-# Fungsi untuk Matriks Ternormalisasi
 @eel.expose
 def matriks_ternormalisasi(csv_name):
     kriteria, alternatif = tabel_kecocokan(csv_name)
@@ -70,6 +64,17 @@ def matriks_ternormalisasi(csv_name):
     alt_value /= alt_sqrt
 
     alt_value = np.array(alt_value).tolist()
+    return(kriteria, alt_name, alt_value)
+
+
+@eel.expose
+def bobot_ternormalisasi(csv_name):
+    kriteria, alt_name, alt_value = matriks_ternormalisasi(csv_name)
+    bobot = read_csv(csv_name)[1][5][1:].astype(int)
+
+    alt_value *= bobot
+    alt_value = np.array(alt_value).tolist()
+
     return(kriteria, alt_name, alt_value)
 
 
