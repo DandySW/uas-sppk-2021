@@ -123,3 +123,66 @@ function set_bobot_ternormalisasi(array) {
 
 }
 
+function get_solusi_ideal() {
+    eel.solusi_ideal(get_csv())(set_solusi_ideal);
+}
+
+function set_solusi_ideal(array) {
+    var table = get_table();
+    var kriteria = array[0];
+    var A_value = [array[1], array[2]];
+
+    var tr = document.createElement('tr');
+    var th = document.createElement('th');
+    th.innerHTML = '';
+    tr.appendChild(th);
+    for (let i = 1; i < kriteria.length; i++) {
+        var th = document.createElement('th');
+        th.innerHTML = kriteria[i];
+        tr.appendChild(th);
+    }
+    table.appendChild(tr);
+
+    for (let i = 0; i < 2; i++) {
+        var newRow = table.insertRow(table.rows.length);
+        var value = newRow.insertCell(0);
+        value.innerHTML = (i == 0) ? 'A+' : 'A-';
+
+        for (let j = 0; j < A_value[i].length; j++) {
+            var value = newRow.insertCell(j + 1);
+            value.innerHTML = A_value[i][j].toFixed(6);
+        }
+    }
+}
+
+function get_jarak_solusi_ideal() {
+    eel.jarak_solusi_ideal(get_csv())(set_jarak_solusi_ideal);
+}
+
+function set_jarak_solusi_ideal(array) {
+    var table = get_table();
+    var alternatif = array[0];
+    var D_value = [array[1], array[2]];
+
+    var tr = document.createElement('tr');
+    var th = document.createElement('th');
+    th.innerHTML = '';
+    tr.appendChild(th);
+    for (let i = 0; i < alternatif.length; i++) {
+        var th = document.createElement('th');
+        th.innerHTML = alternatif[i];
+        tr.appendChild(th);
+    }
+    table.appendChild(tr);
+
+    for (let i = 0; i < 2; i++) {
+        var newRow = table.insertRow(table.rows.length);
+        var value = newRow.insertCell(0);
+        value.innerHTML = (i == 0) ? 'D+' : 'D-';
+
+        for (let j = 0; j < D_value[i].length; j++) {
+            var value = newRow.insertCell(j + 1);
+            value.innerHTML = D_value[i][j].toFixed(6);
+        }
+    }
+}

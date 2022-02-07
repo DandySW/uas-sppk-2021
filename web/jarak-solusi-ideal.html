@@ -91,31 +91,18 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
+              <form class="mt-5 mb-3 login-input" id="form-csv">
+                <div class="form-group">
+                  <input type="file" id="csv-file" name="csv-file" class="form-control" accept=".csv" />
+                </div>
+                <button type="button" class="btn login-form__btn submit w-100" onclick="get_jarak_solusi_ideal()">Proses</button>
+              </form>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Jarak Antara Nilai Setiap Alternatif dengan Solusi Ideal Positif & Negatif</h4>
                   <div class="table-responsive">
                     <table class="table table-bordered table-striped verticle-middle">
-                      <tr>
-                        <th scope="col">D+</th>
-                        <th scope="col">D-</th>
-                      </tr>
-                      <tr>
-                        <th>3.917352926052127</th>
-                        <th>1.53565819088734</th>
-                      </tr>
-                      <tr>
-                        <th>1.9906260376861487</th>
-                        <th>3.671192520228545</th>
-                      </tr>
-                      <tr>
-                        <th>3.189700448052543</th>
-                        <th>2.079634853430102</th>
-                      </tr>
-                      <tr>
-                        <th>2.44398841183491</th>
-                        <th>2.8187938125839866</th>
-                      </tr>
+                      <tbody></tbody>
                     </table>
                   </div>
                 </div>

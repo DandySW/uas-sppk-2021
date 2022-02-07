@@ -91,63 +91,18 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
+              <form class="mt-5 mb-3 login-input" id="form-csv">
+                <div class="form-group">
+                  <input type="file" id="csv-file" name="csv-file" class="form-control" accept=".csv" />
+                </div>
+                <button type="button" class="btn login-form__btn submit w-100" onclick="get_solusi_ideal()">Proses</button>
+              </form>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Solusi Ideal Positif & Negatif</h4>
                   <div class="table-responsive">
                     <table class="table table-bordered table-striped verticle-middle">
-                      <tr>
-                        <th scope="col">A+</th>
-                        <th scope="col">A-</th>
-                      </tr>
-                      <tr>
-                        <th>0.7001400420140048</th>
-                        <th>3.500700210070024</th>
-                      </tr>
-                      <tr>
-                        <th>1.4770978917519928</th>
-                        <th>2.4618298195866544</th>
-                      </tr>
-                      <tr>
-                        <th>2.0</th>
-                        <th>2.0</th>
-                      </tr>
-                      <tr>
-                        <th>1.4770978917519928</th>
-                        <th>2.4618298195866544</th>
-                      </tr>
-                      <tr>
-                        <th>1.952833664712358</th>
-                        <th>3.254722774520597</th>
-                      </tr>
-                      <tr>
-                        <th>2.1213203435596424</th>
-                        <th>2.82842712474619</th>
-                      </tr>
-                      <tr>
-                        <th>2.1213203435596424</th>
-                        <th>2.82842712474619</th>
-                      </tr>
-                      <tr>
-                        <th>1.4907119849998598</th>
-                        <th>2.9814239699997196</th>
-                      </tr>
-                      <tr>
-                        <th>1.1925695879998879</th>
-                        <th>2.3851391759997758</th>
-                      </tr>
-                      <tr>
-                        <th>1.697056274847714</th>
-                        <th>2.262741699796952</th>
-                      </tr>
-                      <tr>
-                        <th>1.829982843991256</th>
-                        <th>2.4399771253216747</th>
-                      </tr>
-                      <tr>
-                        <th>1.4907119849998598</th>
-                        <th>2.9814239699997196</th>
-                      </tr>
+                      <tbody></tbody>
                     </table>
                   </div>
                 </div>

@@ -70,12 +70,58 @@ def matriks_ternormalisasi(csv_name):
 @eel.expose
 def bobot_ternormalisasi(csv_name):
     kriteria, alt_name, alt_value = matriks_ternormalisasi(csv_name)
-    bobot = read_csv(csv_name)[1][5][1:].astype(int)
 
+    bobot = read_csv(csv_name)[1][5][1:].astype(int)
     alt_value *= bobot
     alt_value = np.array(alt_value).tolist()
 
     return(kriteria, alt_name, alt_value)
 
 
-eel.start('kriteria.html', size=(1280, 720))
+@eel.expose
+def solusi_ideal(csv_name):
+    kriteria = bobot_ternormalisasi(csv_name)[0]
+    alt_value = np.array(bobot_ternormalisasi(csv_name)[2])
+    cols = read_csv(csv_name)[0][1:]
+    kategori = read_csv(csv_name)[1][4][1:]
+
+    A_plus = []
+    A_minus = []
+    for column in range(0, len(cols)):
+        if kategori[column] == 'cost':
+            A_plus.append(alt_value[:, column].min())
+            A_minus.append(alt_value[:, column].max())
+
+        elif kategori[column] == 'benefit':
+            A_plus.append(alt_value[:, column].max())
+            A_minus.append(alt_value[:, column].min())
+
+        else:
+            A_plus.append(0)
+            A_minus.append(0)
+    return(kriteria, A_plus, A_minus)
+
+
+@eel.expose
+def jarak_solusi_ideal(csv_name):
+    bobot_ternomalisasi = np.array(bobot_ternormalisasi(csv_name)[2])
+    A_plus, A_minus = solusi_ideal(csv_name)[1:3]
+    rows = read_csv(csv_name)[1][:-2]
+    alt = alternatif(csv_name)
+
+    D_plus = []
+    D_minus = []
+
+    D_plus_square = (bobot_ternomalisasi - A_plus)**2
+    D_minus_square = (bobot_ternomalisasi - A_minus)**2
+
+    for row in range(len(rows)):
+        D_plus_sqrt = (D_plus_square[row].sum())**0.5
+        D_minus_sqrt = (D_minus_square[row].sum())**0.5
+
+        D_plus.append(D_plus_sqrt)
+        D_minus.append(D_minus_sqrt)
+    return(alt, D_plus, D_minus)
+
+
+eel.start('kriteria.html', size=(1920, 1080))
