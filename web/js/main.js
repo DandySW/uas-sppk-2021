@@ -186,3 +186,21 @@ function set_jarak_solusi_ideal(array) {
         }
     }
 }
+
+function get_nilai_preferensi() {
+    eel.nilai_preferensi(get_csv())(set_nilai_preferensi);
+}
+
+function set_nilai_preferensi(array) {
+    var table = get_table();
+
+    // Looping untuk mengisi setiap baris pada tabel
+    for (let i = 0; i < array.length; i++) {
+        var newRow = table.insertRow(table.rows.length);
+
+        for (let j = 0; j < array[0].length; j++) {
+            var value = newRow.insertCell(j);
+            value.innerHTML = array[i][j];
+        }
+    }
+}

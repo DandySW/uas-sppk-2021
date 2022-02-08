@@ -124,4 +124,25 @@ def jarak_solusi_ideal(csv_name):
     return(alt, D_plus, D_minus)
 
 
+@eel.expose
+def nilai_preferensi(csv_name):
+    alt, D_plus, D_minus = jarak_solusi_ideal(csv_name)
+
+    data = {
+        'alterantif': alt,
+        'nilai': []
+    }
+    for row in range(len(alt)):
+        V = D_minus[row] / (D_minus[row] + D_plus[row])
+        data['nilai'].append(V)
+
+    df = pd.DataFrame(data)
+    ranking = df.iloc[:, 1].rank(ascending=False)
+    df.insert(2, 'ranking', ranking)
+    df = df.sort_values(by=['ranking'])
+    df = np.array(df).tolist()
+
+    return(df)
+
+
 eel.start('kriteria.html', size=(1920, 1080))
