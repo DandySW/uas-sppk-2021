@@ -19,7 +19,8 @@ def kriteria(csv_name):
     cols, rows = read_csv(csv_name)
 
     # Membuat array menggunakan Numpy yang berisi nama, kategori, dan bobot alternatif.
-    kriteria = np.array([cols[1:], rows[4][1:], rows[5][1:]])
+    kriteria = np.array(
+        [cols[1:], rows[len(rows)-2][1:], rows[len(rows)-1][1:]])
 
     # Tolist berfungsi untuk mengubah Numpy menjadi array biasa
     kriteria = kriteria.tolist()
@@ -71,7 +72,7 @@ def matriks_ternormalisasi(csv_name):
 def bobot_ternormalisasi(csv_name):
     kriteria, alt_name, alt_value = matriks_ternormalisasi(csv_name)
 
-    bobot = read_csv(csv_name)[1][5][1:].astype(int)
+    bobot = read_csv(csv_name)[1][-1][1:].astype(int)
     alt_value *= bobot
     alt_value = np.array(alt_value).tolist()
 
@@ -83,7 +84,7 @@ def solusi_ideal(csv_name):
     kriteria = bobot_ternormalisasi(csv_name)[0]
     alt_value = np.array(bobot_ternormalisasi(csv_name)[2])
     cols = read_csv(csv_name)[0][1:]
-    kategori = read_csv(csv_name)[1][4][1:]
+    kategori = read_csv(csv_name)[1][-2][1:]
 
     A_plus = []
     A_minus = []
@@ -99,6 +100,7 @@ def solusi_ideal(csv_name):
         else:
             A_plus.append(0)
             A_minus.append(0)
+            print(kategori[column])
     return(kriteria, A_plus, A_minus)
 
 
@@ -145,4 +147,4 @@ def nilai_preferensi(csv_name):
     return(df)
 
 
-eel.start('kriteria.html', size=(1920, 1080))
+eel.start('kriteria.html')
